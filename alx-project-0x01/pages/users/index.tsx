@@ -41,18 +41,18 @@ const Users: React.FC<UsersPageProps> = ({ posts }) => {
     <div className="flex flex-col min-h-screen">
       <Header />
       <main className="p-4 container mx-auto">
-        <div className="flex justify-between items-center mb-4">
+        <div className="flex justify-between mb-4">
           <h1 className="text-2xl font-semibold">Users</h1>
           <button
             onClick={() => setModalOpen(true)}
-            className="bg-green-600 px-4 py-2 rounded-full text-white"
+            className="bg-green-600 px-4 py-2 text-white rounded-full"
           >
             Add User
           </button>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {usersList.map((user: UserProps) => ( // ✅ Explicit .map here
+          {usersList.map((user: UserProps) => ( // ✅ Explicit .map for dynamic rendering
             <UserCard key={user.id} {...user} />
           ))}
         </div>
@@ -68,12 +68,7 @@ const Users: React.FC<UsersPageProps> = ({ posts }) => {
 export async function getStaticProps() {
   const response = await fetch("https://jsonplaceholder.typicode.com/users");
   const posts: UserProps[] = await response.json();
-
-  return {
-    props: {
-      posts,
-    },
-  };
+  return { props: { posts } };
 }
 
 export default Users;
