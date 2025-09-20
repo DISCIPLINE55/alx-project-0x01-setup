@@ -52,13 +52,15 @@ const Users: React.FC<UsersPageProps> = ({ posts }) => {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {usersList.map((user) => (
+          {usersList.map((user: UserProps) => ( // ✅ Explicit .map here
             <UserCard key={user.id} {...user} />
           ))}
         </div>
       </main>
 
-      {isModalOpen && <UserModal onClose={() => setModalOpen(false)} onSubmit={handleAddUser} />}
+      {isModalOpen && (
+        <UserModal onClose={() => setModalOpen(false)} onSubmit={(u) => handleAddUser(u)} />
+      )}
     </div>
   );
 };
