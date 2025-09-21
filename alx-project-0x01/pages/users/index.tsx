@@ -52,7 +52,7 @@ const Users: React.FC<UsersPageProps> = ({ posts }) => {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {usersList.map((user: UserProps) => ( // ✅ Explicit .map for dynamic rendering
+          {posts.map((user: UserProps) => ( // ✅ Explicit .map for dynamic rendering
             <UserCard key={user.id} {...user} />
           ))}
         </div>
